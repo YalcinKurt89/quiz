@@ -5,8 +5,6 @@ const nextButton = document.getElementById('next-button');
 const resultButton = document.getElementById('result-button');
 const restartButton = document.getElementById('restart-button');
 
-
-
 // Daten für das Quiz (Fragen und Antworten)
 const quizData = [
   {
@@ -110,19 +108,14 @@ const quizData = [
   },
 ];
 
-
-
 let currentQuestion = 0; // Aktuelle Frage
 let correctAnswers = 0; // Anzahl der richtig beantworteten Fragen
 let wrongAnswers = 0; // Anzahl der falsch beantworteten Fragen
-
-
 
 // Funktion zum Anzeigen der aktuellen Frage
 function showQuestion() {
   const question = quizData[currentQuestion];
   questionText.innerText = question.question;
-
 
 // Antwortbuttons aktualisieren
   for (let i = 0; i < answerButtons.length; i++) {
@@ -135,8 +128,6 @@ function showQuestion() {
     nextButton.style.display = 'none'; // "Weiter"-Button ausblenden
     resultButton.style.display = 'none'; // "Ergebnis"-Button ausblenden 
 }
-
-
 
 // Funktion zum Überprüfen der ausgewählten Antwort
 function checkAnswer() {
@@ -153,18 +144,12 @@ function checkAnswer() {
     wrongAnswers++; // Anzahl der falschen Antworten erhöhen
   }
 
-
-
 // Alle Antwortbuttons deaktivieren
   for (let i = 0; i < answerButtons.length; i++) {
     answerButtons[i].disabled = true;
   }
 
-
-
   nextButton.style.display = 'block';
-
-
 
 // Überprüfen, ob weitere Fragen vorhanden sind
   if (currentQuestion < quizData.length - 1) {
@@ -174,20 +159,18 @@ function checkAnswer() {
   }
 }
 
-
-
 // Funktion zum Anzeigen des Quiz-Ergebnisses
 function showResult() {
   const totalQuestions = quizData.length;
   const resultText = `Du hast ${correctAnswers} von ${totalQuestions} Fragen richtig beantwortet.`;
   questionText.innerText = resultText;
+
   for (let i = 0; i < answerButtons.length; i++) {
     answerButtons[i].style.display = 'none';
   }
+
   nextButton.style.display = 'none'; // "Weiter"-Button ausblenden
   resultButton.style.display = 'none'; // "Ergebnis"-Button ausblenden
-
-
 
   function restartQuiz() {
     currentQuestion = 0;
@@ -196,32 +179,25 @@ function showResult() {
     showQuestion();
   }
   
-
-
   nextButton.addEventListener('click', () => {
     showQuestion();
   });
 
-  
 // Antwortbuttons ausblenden
-for (let i = 0; i < answerButtons.length; i++) {
-    answerButtons[i].style.display = 'none';
-    }
-    }
+  for (let i = 0; i < answerButtons.length; i++) {
+      answerButtons[i].style.display = 'none';
+      }
+}
     
 // Eventlistener für den "Weiter"-Button hinzufügen
     nextButton.addEventListener('click', () => {
     currentQuestion; // Auf die nächste Frage vorrücken
     showQuestion(); // Nächste Frage anzeigen
     });
-    
-
 
 // Eventlistener für den "Ergebnis"-Button hinzufügen
     resultButton.addEventListener('click', showResult);
     restartButton.addEventListener('click', restartQuiz);
     
-
-
 // Quiz starten
     showQuestion();
